@@ -1,0 +1,11 @@
+let names = [
+    'alex', 'bob', 'carl', 'aaron', 
+    'aslan', 'matheu', 'boris', 'anton', 
+    'gleb', 'vlad', 'artem'
+]
+let results = []
+for (let i = 0; i < names.length; i++) {
+results = names.filter(i=>/^a/.exec(i))
+}
+
+console.log(results); // ['alex','aaron','aslan','anton', 'artem']
