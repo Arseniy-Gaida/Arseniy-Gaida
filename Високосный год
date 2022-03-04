@@ -1,0 +1,27 @@
+function visokosniy(year) {
+    if (year%4 && year%100 || year%400===0) {
+        return true
+    } 
+    
+    else {
+        return false
+    }
+    
+  }
+  console.log(visokosniy(2100));
+  
+  const x = function (year) {
+    
+    return year%4 && year%100 || year%400===0 
+  } 
+  console.log(x(2100));
+  
+  visokosniy = (year) => {if( 
+    year%4==0 && year%100==0 || year%400===0) 
+    {return true 
+  }
+  
+  else if(year % 4 != 0){ 
+       return false} 
+  } 
+  console.log(visokosniy(2000));
