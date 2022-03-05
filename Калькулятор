@@ -1,0 +1,58 @@
+
+//html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+</head>
+<body>
+<input type="text" placeholder="firstNum" id="someNumberOne">
+<input type="text" placeholder="operator" id="someOperator">
+<input type="text" placeholder="secondNum" id="someNumberTwoo">
+<h1 id="result">result: </h1>
+<button onclick="calculate()" id = "lon">click</button>
+<script src="script.js"></script>
+</body>
+</html>
+
+//js
+function calculate() {
+    var num1 = Number(document.getElementById("someNumberOne").value)
+    var oper =  document.getElementById("someOperator").value
+    var num2 = Number(document.getElementById("someNumberTwoo").value)
+     
+     
+
+    if (oper === "+"){
+         
+        result =  num1 + num2;
+         
+         }
+         document.getElementById("result").innerHTML = result;
+
+      if(oper === "-"){
+        result = num1 - num2
+       
+       
+    }
+    document.getElementById("result").innerHTML = result;
+
+    if(oper === "*"){
+        result = num1 * num2
+        
+         
+    }
+    document.getElementById("result").innerHTML = result;
+
+    if(oper === "/"){
+        result = num1 / num2
+        
+         
+    }
+    document.getElementById("result").innerHTML = result;
+     
+     
+ }
