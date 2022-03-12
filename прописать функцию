@@ -1,0 +1,63 @@
+class Student {
+    id: number
+    firstName: string
+    gpa: number
+    constructor (
+        id: number, firstName: string, gpa: number
+        )
+        {
+            this.id = id
+            this.firstName = firstName
+            this.gpa = gpa
+        }
+}
+
+const students: Student[] = []
+
+
+function addStudent(student:Student, students: Student[]) {
+    students.push(student)
+}
+
+console.log(students);
+addStudent(new Student(1, "alex", 4.5), students)
+addStudent(new Student(2, "Cortney", 3), students)
+addStudent(new Student(3, "Pavel", 5), students)
+console.log(students);
+
+function getStudentById(id: number, students: Student[]){
+    console.log( students.find(x => x.id == 2))
+}
+
+getStudentById(2, students)
+
+function updateStudentById(id:number, student:Student, students:Student[]) {  
+    for (let i = 0; i < students.length; i++) {  
+        if (students[i].id == id) {  
+            students[i] = student  
+}  
+    }
+
+}
+
+updateStudentById(2, new Student(4, 'Leo', 5.0), students);
+console.log(students);
+
+
+function deleteStudentById(id:number, students:Student[]) { 
+
+    for (let i = 0; i < students.length; i++) { 
+
+        if (students[i].id == id) { 
+
+            delete students[i]
+
+        } 
+
+    }
+
+} 
+
+deleteStudentById(1, students) 
+
+console.log(students);
