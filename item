@@ -1,0 +1,109 @@
+const readlineSync = require('readline-sync');
+class Item {
+    constructor(title) {
+        this.title = title;
+    }
+}
+class MainСharacter {
+    constructor(firstName) {
+        this.firstName = firstName;
+        this.inventory = [];
+    }
+}
+class House {
+    constructor(title, description) {
+        this.title = title;
+        this.description = description;
+        this.loot = [];
+    }
+}
+class Place {
+    constructor(title, desctiption) {
+        this.title = title;
+        this.desctiption = desctiption;
+        this.houses = [];
+    }
+}
+const mainСharacter = new MainСharacter('Ksyusha')
+
+const place = new Place('derevnya', 'this is derevnya')
+place.houses.push(new House('house of rising Sun', 'this is house'))
+// place.houses.push(new House('entertainment house', 'this is house'))
+// place.houses.push(new House('sober house', 'this is house'))
+
+place.houses[0].loot.push(new Item('botle'))
+place.houses[0].loot.push(new Item('pie'))
+// place.houses[1].loot.push(new Item('pie'))
+// place.houses[1].loot.push(new Item('pie'))
+const placeMenu = `${place.desctiption}
+a.go to house
+b.show inventory
+x.exit`
+
+// for (const [idx, value] of place.houses.entries()) {
+//   console.log(`${idx + 1}. ${value.title}`);
+// }
+
+
+while (true) {
+  console.log(placeMenu);
+  let command = readlineSync.prompt()
+  if (command == 'a'){
+     
+    
+    while (true) {
+      const houseMenu = `x. go to main menu`
+      for (const [idx, value] of place.houses[0].loot.entries()) {
+        console.log(`${idx + 1}. ${value.title}`);
+      
+      }
+      console.log(houseMenu);
+      command = readlineSync.prompt()
+      if (command === 'x') {
+        break
+      }
+      else{
+         
+
+        mainСharacter.inventory.push(place.houses[0].loot.splice(+command - 1,1)[0])
+      }
+    }
+  }
+  else if (command == 'b') {
+    while (true) {
+      for (const [idx, value] of mainСharacter.inventory.entries()) {
+        console.log(`${idx + 1}. ${value.title}`);
+      }
+      const inventoryMenu = 'a. remove item \nx. go to main menu'
+      console.log(inventoryMenu);
+      command = readlineSync.prompt()
+
+      if (command == 'a') {
+        while (true) {
+          console.log('pick item to remove');
+          for (const [idx, value] of mainСharacter.inventory.entries()) {
+            console.log(`${idx + 1}. ${value.title}`);
+          }
+          console.log(`x. go to main menu`);
+      
+          command = readlineSync.prompt()
+        
+           if (command === 'x') {
+            break
+          }
+          else (
+            mainСharacter.inventory.splice(+command - 1,1)[0]
+          )
+        }
+
+      }
+      
+      else if (command === 'x') {
+        break
+      }
+    }
+  }
+  else if (command == 'x') {
+    break
+  }
+}
