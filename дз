@@ -1,0 +1,34 @@
+CREATE TABLE Subjects(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL
+);
+
+CREATE TABLE Teachers(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  firstName TEXT NOT NULL
+);
+
+CREATE TABLE Teachers_Subjects(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  teacherId INTEGER REFERENCES Teachers(id),
+  subjectId INTEGER REFERENCES Subjects(id)
+);
+
+
+INSERT INTO Subjects(title) VALUES("Math");
+INSERT INTO Subjects(title) VALUES("Physics");
+INSERT INTO Subjects(title) VALUES("geography");
+
+
+INSERT INTO Teachers(firstName) VALUES("Artem");
+INSERT INTO Teachers(firstName) VALUES("Boris");
+INSERT INTO Teachers(firstName) VALUES("Valera");
+
+INSERT INTO Teachers_Subjects(teacherId, subjectId) VALUES(1,1);
+INSERT INTO Teachers_Subjects(teacherId, subjectId) VALUES(1,2);
+INSERT INTO Teachers_Subjects(teacherId, subjectId) VALUES(2,3);
+INSERT INTO Teachers_Subjects(teacherId, subjectId) VALUES(3,3);
+
+SELECT firstName, title FROM Teachers INNER JOIN  Subjects ON Teachers.id = Subjects.id WHERE Subjects.title = "Math";
+
+ DROP TABLE Subjects;
