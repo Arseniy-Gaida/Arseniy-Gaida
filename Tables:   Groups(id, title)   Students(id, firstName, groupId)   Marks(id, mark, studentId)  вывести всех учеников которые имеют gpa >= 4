@@ -1,0 +1,54 @@
+CREATE TABLE Students(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  firstName TEXT NOT NULL,
+  groupId INTEGER REFERENCES Groups(id)
+);
+
+CREATE TABLE Groups(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL
+);
+
+CREATE TABLE Marks(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  mark INTEGER,
+  studentId INTEGER REFERENCES Students(id)
+);
+
+
+INSERT INTO Groups(title) VALUES("sdp-211");
+INSERT INTO Groups(title) VALUES("sdp-212");
+
+
+INSERT INTO Students(firstname, groupId) VALUES("alex", 1);
+INSERT INTO Students(firstname, groupId) VALUES("bob", 1);
+INSERT INTO Students(firstname, groupId) VALUES("carl", 1);
+INSERT INTO Students(firstname, groupId) VALUES("frank", 2);
+INSERT INTO Students(firstname, groupId) VALUES("mark", 2);
+INSERT INTO Students(firstname, groupId) VALUES("david", 2);
+
+INSERT INTO Marks(mark, studentId) values(3, 1);
+INSERT INTO Marks(mark, studentId) values(3, 1);
+INSERT INTO Marks(mark, studentId) values(4, 1);
+
+INSERT INTO Marks(mark, studentId) values(5, 2);
+INSERT INTO Marks(mark, studentId) values(2, 2);
+INSERT INTO Marks(mark, studentId) values(4, 2);
+
+INSERT INTO Marks(mark, studentId) values(3, 3);
+INSERT INTO Marks(mark, studentId) values(4, 3);
+INSERT INTO Marks(mark, studentId) values(3, 3);
+
+INSERT INTO Marks(mark, studentId) values(4, 4);
+INSERT INTO Marks(mark, studentId) values(4, 4);
+INSERT INTO Marks(mark, studentId) values(4, 4);
+
+INSERT INTO Marks(mark, studentId) values(5, 5);
+INSERT INTO Marks(mark, studentId) values(5, 5);
+INSERT INTO Marks(mark, studentId) values(5, 5);
+
+INSERT INTO Marks(mark, studentId) values(2, 6);
+INSERT INTO Marks(mark, studentId) values(5, 6);
+INSERT INTO Marks(mark, studentId) values(1, 6);
+
+SELECT firstName,gpa FROM Students S INNER JOIN (SELECT studentId, avg(mark) as gpa FROM Marks GROUP BY studentId) M ON S.id == M.studentId WHERE GPA >= 4;
